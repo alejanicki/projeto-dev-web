@@ -1,10 +1,10 @@
-package main.java.com.devweb.project.resources;
+package com.devweb.project.resources;
 
 import java.net.URI;
 import java.util.List;
 
-import com.alejanicki.course.entities.User;
-import com.alejanicki.course.services.UserService;
+import com.devweb.project.entities.User;
+import com.devweb.project.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
