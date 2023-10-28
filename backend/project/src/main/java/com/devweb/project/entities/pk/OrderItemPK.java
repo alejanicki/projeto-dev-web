@@ -2,14 +2,15 @@ package com.devweb.project.entities.pk;
 
 import java.io.Serializable;
 
-import com.devweb.project.entities.Order;
-
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+import com.devweb.project.entities.Order;
+import com.devweb.project.entities.Product;
+
 @Embeddable
-public class OrderItem implements Serializable {
+public class OrderItemPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
@@ -50,7 +51,7 @@ public class OrderItem implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		OrderItem other = (OrderItem) obj;
+		OrderItemPK other = (OrderItemPK) obj;
 		if (order == null) {
 			if (other.order != null)
 				return false;
