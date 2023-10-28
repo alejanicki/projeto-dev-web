@@ -2,7 +2,7 @@ package com.devweb.project.resources.exceptions;
 
 import java.time.Instant;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import com.devweb.project.services.exceptions.DatabaseException;
 import com.devweb.project.services.exceptions.ResourceNotFoundException;
