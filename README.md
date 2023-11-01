@@ -1,6 +1,8 @@
 # projeto-dev-web
 Este repositório tem como finalidade servir de apresentação para a matéria de desenvolvimento web do 10º semestre de engenharia da computação da UAM. 
 
+O Projeto se trata de um sitema de compras online.
+
 Alessandro Janicki Araujo 
 125111372338
 
