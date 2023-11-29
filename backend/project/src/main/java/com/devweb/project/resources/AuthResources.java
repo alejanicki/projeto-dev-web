@@ -16,6 +16,7 @@ import com.devweb.project.services.JwtAuthService;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AuthResources {
 
     private final JwtAuthService jwtService;
