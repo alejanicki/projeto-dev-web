@@ -37,9 +37,7 @@ export function AuthProvider({ children }: any) {
       .then((ress) => {
         const token = ress.data.access_token;
         if (token) {
-          setCookie(undefined, "nextauth.token", token, {
-            maxAge: 10, // 10 min
-          });
+          setCookie(undefined, "nextauth.token", token);
         }
         api.defaults.headers["Authorization"] = `Bearer ${token}`;
         setToken(token);

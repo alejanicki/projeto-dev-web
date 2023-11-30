@@ -15,12 +15,14 @@ const dia = dataAtual.getDate();
 return (`${ano}-${mes}-${dia}`)
 }
 
-export const authLogin = (email: string, password: string) => {
+export const authLogin = async (email: string, password: string) => {
   const params = {
     "email": email,
     "password": password
   }
-  return api.post("/auth/login", params);
+  const response = api.post("/auth/login", params);
+  console.log((await response).data)
+  return response
 };
 
 export const checkToken = () => {
@@ -28,8 +30,6 @@ export const checkToken = () => {
   return api.get("/user/read-id", token);
 };
 
-
-export const getUserInfo = () => {
-  const { "nextauth.token": token }: any = parseCookies();
-  return api.get("/user/read-id", token);
-};
+export const getProduct = () => {
+  return api.get("/product")
+}
