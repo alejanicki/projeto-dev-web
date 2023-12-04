@@ -3,6 +3,7 @@ import Input from "@/components/input";
 import { AuthContext } from "@/contexts/auth";
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 

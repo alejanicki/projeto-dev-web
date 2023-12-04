@@ -2,7 +2,7 @@
 import { createContext, useEffect, useState } from "react";
 import { setCookie, parseCookies } from "nookies";
 import { useRouter } from "next/navigation";
-import { api, authLogin, checkToken } from "@/services/api";
+import { api, authLogin } from "@/services/api";
 
 type SignInData = {
   email: string;
@@ -18,17 +18,14 @@ export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthProvider({ children }: any) {
   const nav = useRouter();
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(undefined);
 
   const isAuthenticated = !!token;
 
   useEffect(() => {
-    const { "nextauth.token": token } = parseCookies();
-
-    if (token) {
-      checkToken().then((response) => {
-        setToken(response.data);
-      });
+    const { "nextauth.token": token }: any = parseCookies();
+    if (token != undefined) {
+      nav.push("/login")
     }
   }, []);
 
