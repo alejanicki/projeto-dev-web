@@ -30,6 +30,11 @@ public class UserService {
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 
+	public User findByEmail(String email) {
+        Optional<User> obj = repository.findUserByEmail(email);
+		return obj.orElseThrow(() -> new ResourceNotFoundException(email));
+    }
+
 	public User insert(User obj) {
 		return repository.save(obj);
 	}
@@ -59,4 +64,6 @@ public class UserService {
 		entity.setEmail(obj.getEmail());
 		entity.setPhone(obj.getPhone());
 	}
+
+    
 }

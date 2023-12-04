@@ -11,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -28,7 +30,7 @@ public class Order implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant moment;
 
 	private Integer orderStatus;
@@ -38,10 +40,14 @@ public class Order implements Serializable {
 	private User client;
 
 	@OneToMany(mappedBy = "id.order")
-	private Set<OrderItem> items = new HashSet<>();
+    private Set<OrderItem> items = new HashSet<>();
 
 	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
 	private Payment payment;
+
+	@ManyToMany
+	@JoinTable(name = "tb_order_item", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
+	private Set<Product> products = new HashSet<>();
 
 	public Order() {
 	}
@@ -88,6 +94,14 @@ public class Order implements Serializable {
 		this.client = client;
 	}
 
+	public void addProduct(Product product) {
+		this.products.add(product);
+	}
+
+	public void removeProduct(Product product) {
+		this.products.remove(product);
+	}
+
 	public Payment getPayment() {
 		return payment;
 	}
@@ -98,6 +112,10 @@ public class Order implements Serializable {
 
 	public Set<OrderItem> getItems() {
 		return items;
+	}
+
+	public void setItems(Set<OrderItem> items) {
+		this.items = items;
 	}
 
 	public Double getTotal() {
